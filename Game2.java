@@ -1,6 +1,4 @@
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
@@ -10,6 +8,11 @@ public class Game2 extends JPanel{
 
     Ball ball = new Ball(this);
     Racquet racquet = new Racquet(this);
+    int speed = 1;
+
+    private int getScore(){
+        return speed - 1;
+    }
 
     public Game2(){
         addKeyListener(new KeyListener() {
@@ -44,6 +47,10 @@ public class Game2 extends JPanel{
                 RenderingHints.VALUE_ANTIALIAS_ON);
         ball.paint(g2d);
         racquet.paint(g2d);
+
+        g2d.setColor(Color.gray);
+        g2d.setFont(new Font("Verdana", Font.BOLD, 30));
+        g2d.drawString(String.valueOf(getScore()), 10, 30);
     }
 
     public void gameOver(){
